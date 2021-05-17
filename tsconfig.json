@@ -67,9 +67,9 @@
 	  /* Advanced Options */
 	  "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
 	},
-	"compileOnSave": true,
 	"include": [
-	  "src/**/*", "*.d.ts"],
+	  "src/**/*"
+	],
 	"exclude": [
 	  "node_modules",
 	  "dist",

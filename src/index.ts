@@ -1,9 +1,9 @@
 class AsyncArray extends Array {
-	constructor() {
-		if (Array.isArray(arguments[0])) {
-			super(...arguments[0]);
+	constructor(...args: any[]) {
+		if (Array.isArray(args[0])) {
+			super(...args[0]);
 		} else {
-			super(...arguments);
+			super(...args);
 		}
 	}
 
@@ -23,6 +23,10 @@ class AsyncArray extends Array {
 
 	forEachCompleted(predicate: Function): Promise<undefined> {
 		return new Promise((resolve) => {
+			if (this.length === 0) {
+				resolve(undefined)
+				return
+			}
 			let passed = 0;
 			const loop = async (i: number) => {
 				if (i >= this.length) {
@@ -74,4 +78,4 @@ class AsyncArray extends Array {
 	}
 }
 
-module.exports = {AsyncArray};
+export {AsyncArray};

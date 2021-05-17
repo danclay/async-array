@@ -1,11 +1,13 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AsyncArray = void 0;
 class AsyncArray extends Array {
-    constructor() {
-        if (Array.isArray(arguments[0])) {
-            super(...arguments[0]);
+    constructor(...args) {
+        if (Array.isArray(args[0])) {
+            super(...args[0]);
         }
         else {
-            super(...arguments);
+            super(...args);
         }
     }
     asyncForEach(predicate) {
@@ -23,6 +25,10 @@ class AsyncArray extends Array {
     }
     forEachCompleted(predicate) {
         return new Promise((resolve) => {
+            if (this.length === 0) {
+                resolve(undefined);
+                return;
+            }
             let passed = 0;
             const loop = async (i) => {
                 if (i >= this.length) {
@@ -71,5 +77,5 @@ class AsyncArray extends Array {
         });
     }
 }
-module.exports = { AsyncArray };
+exports.AsyncArray = AsyncArray;
 //# sourceMappingURL=index.js.map
